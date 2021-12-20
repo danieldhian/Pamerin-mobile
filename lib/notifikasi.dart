@@ -22,6 +22,7 @@ class notif extends StatelessWidget {
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.white,
+                    elevation: 5.0,
                     child: Column(
                       children: <Widget>[
                         Container(
@@ -63,6 +64,7 @@ class notif extends StatelessWidget {
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.white,
+                    elevation: 5.0,
                     child: Column(
                       children: <Widget>[
                         Container(

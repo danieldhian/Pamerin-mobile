@@ -1,13 +1,16 @@
+// import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:pamerin/konfirmasi.dart';
-
+import 'package:pamerin/model/pameran.dart';
 
 class detail_pameran extends StatelessWidget {
-  const detail_pameran({Key? key}) : super(key: key);
+  final Pameran pameran;
+  const detail_pameran({Key? key, required this.pameran}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +36,7 @@ class detail_pameran extends StatelessWidget {
           ),
           Container(
             margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
-            child: Text("Kahuripan Exhibition",
+            child: Text(pameran.nama,
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold)),
           ),
           Row(
@@ -41,7 +44,7 @@ class detail_pameran extends StatelessWidget {
               Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 5, 5),
                   child: Icon(Icons.calendar_today_outlined)),
-              Text("Selasa, 14 September 2021"),
+              Text(pameran.date),
               Container(
                   margin: EdgeInsets.fromLTRB(20, 0, 5, 5),
                   child: Icon(Icons.access_time)),
@@ -50,7 +53,7 @@ class detail_pameran extends StatelessWidget {
           ),
           Container(
               margin: EdgeInsets.fromLTRB(20, 5, 5, 10),
-              child: Text("Rp 50.000",
+              child: Text("Rp" + " " + pameran.price,
                   style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.red,
@@ -59,7 +62,7 @@ class detail_pameran extends StatelessWidget {
             child: Container(
               margin: EdgeInsets.fromLTRB(20, 0, 20, 10),
               child: Text(
-                "Kahuripan Exhibition adalah pameran ke-2 Mahera Lim yang merupakan seniman Korea-Indonesia yang sedang naik daun. Pada pameran kali ini, karya seni yang dipamerkan merupakan hasil ia berkarya selama satu tahun belakang.",
+                pameran.description,
                 style: TextStyle(fontSize: 15.0, height: 2),
                 textAlign: TextAlign.left,
               ),

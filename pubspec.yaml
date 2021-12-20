@@ -83,6 +83,7 @@ flutter:
      - img/profile.png
      - img/scan.png
      - img/profile1.png
+     - img/splash.png
      
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -72,8 +72,8 @@ class _LoginpageState extends State<Loginpage> {
                   decoration: InputDecoration(
                       suffixIcon: InkWell(
                         child: Icon(showPassword
-                            ? Icons.visibility
-                            : Icons.visibility_off),
+                            ? Icons.visibility_off
+                            : Icons.visibility),
                         onTap: () {
                           if (showPassword) {
                             setState(() {

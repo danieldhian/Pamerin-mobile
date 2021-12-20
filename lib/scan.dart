@@ -56,44 +56,18 @@ class _scanState extends State<scan> {
                         )),
                     Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
                     Text(
-                      "Scan QR Karya Seni",
+                      "Scan QR Tiket Pameran",
                       style: TextStyle(fontSize: 15.0),
                     ),
                     Container(
-                        margin: EdgeInsets.only(left: 200),
+                        margin: EdgeInsets.only(left: 150),
                         child: Icon(Icons.arrow_forward_ios_rounded))
                   ],
                 ),
               ),
             ),
           ),
-          Container(
-            height: 70.0,
-            padding: EdgeInsets.all(10.0),
-            child: Material(
-              borderRadius: BorderRadius.circular(5.0),
-              color: Colors.white,
-              elevation: 3.0,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Image(
-                        image: AssetImage("img/ar.png"),
-                        fit: BoxFit.contain,
-                      )),
-                  Padding(padding: EdgeInsets.fromLTRB(5, 0, 0, 0)),
-                  Text(
-                    "AR (Augmented Reality)",
-                    style: TextStyle(fontSize: 15.0),
-                  ),
-                  Container(
-                      margin: EdgeInsets.only(left: 170),
-                      child: Icon(Icons.arrow_forward_ios_rounded))
-                ],
-              ),
-            ),
-          ),
+          
         ],
       ),
     );

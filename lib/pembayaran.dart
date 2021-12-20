@@ -1,5 +1,4 @@
-
-import 'dart:html';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,6 @@ class pembayaran extends StatefulWidget {
 }
 
 class _pembayaranState extends State<pembayaran> {
-
   Object? selectedRadioTile = 0;
   final picker = ImagePicker();
   File? imageFile;
@@ -30,17 +28,16 @@ class _pembayaranState extends State<pembayaran> {
     });
   }
 
-  chooseImage(ImageSource source) async{
+  chooseImage(ImageSource source) async {
     XFile? pickedFile = await ImagePicker().pickImage(source: source);
 
-    if (pickedFile != null){
+    if (pickedFile != null) {
       setState(() {
-      imageFile.value = File(pickedFile.path);
-    });
-  }
+        imageFile = File(pickedFile.path);
+      });
     }
-  
-    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -257,7 +254,30 @@ class _pembayaranState extends State<pembayaran> {
                       )),
                 ],
               ),
-            )
+            ),
+            Positioned(
+              left: 0,
+              bottom: 0,
+              child: Container(
+                margin: EdgeInsets.all(15),
+                width: MediaQuery.of(context).size.width,
+                color: Colors.red[400],
+                child: InkWell(
+                  onTap: () {},
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      "Unggah",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -198,10 +198,10 @@ class _hal_utamaState extends State<hal_utama> {
                       elevation: 7.0,
                       child: InkWell(
                         onTap: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) {
-                            return detail_pameran();
-                          }));
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) {
+                          //   return detail_pameran();
+                          // }));
                         },
                         child: Column(
                           children: <Widget>[
