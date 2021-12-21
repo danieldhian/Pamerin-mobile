@@ -29,22 +29,24 @@ class AuthServices {
     }
   }
 
-  static Future<ApiResponse<String>> signUp(String name, String email, String password) async{
+  static Future<ApiResponse<String>> signUp(String name, String email, String password, String phone) async{
     final response = await http.post(
       apiURL.resolve('register'),
       headers: acceptJson,
-      body: { 'name': name, 'email': email, 'password': password },
+      body: { 'name': name, 'email': email, 'password': password, 'phone' :  phone},
     );
     try{
       if(response.statusCode == HttpStatus.ok){
         final Map<String, dynamic> json = jsonDecode(response.body);
-
+        print("a");
         return ApiResponse<String>(true, data: json['access_token']);
       }else{
         print(json);
+        print("b");
         return ApiResponse<String>(false, message: "tidak bisa daftar");
       }
     }catch($e){
+      print("c");
       return ApiResponse(false, message: defaultErrorText);
     }
   }

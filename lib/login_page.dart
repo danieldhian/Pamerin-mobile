@@ -1,5 +1,8 @@
+// import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:pamerin/register_page.dart';
 import 'package:pamerin/beranda.dart';
 import 'package:pamerin/services/api_response.dart';
@@ -20,8 +23,6 @@ class _LoginpageState extends State<Loginpage> {
   String email = "";
   String password = "";
   bool isLoading = true;
-
-  var Fluttertoast;
 
   @override
   Widget build(BuildContext context) {
@@ -144,14 +145,16 @@ class _LoginpageState extends State<Loginpage> {
                           logIn(email, password).then(
                             (value){
                               if(value == true){
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
+                                Navigator.of(context,rootNavigator: true).pop();
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
                                   return beranda();
                                 }));
                                 Fluttertoast.showToast(msg: "Berhasil login");
                               }else{
-                                Navigator.pop(context);
+                                // Navigator.pop(context);
+                                Navigator.of(context,rootNavigator: true).pop();;
                                 Fluttertoast.showToast(msg: "Email atau password salah.");
                               }
                             }

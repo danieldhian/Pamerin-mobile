@@ -13,10 +13,9 @@ class _scanState extends State<scan> {
   String code = "";
   String getcode = "";
   Future scanbarcode() async {
-    getcode =
-        await FlutterBarcodeScanner.scanBarcode("#990000", "Cancel", true, ScanMode.QR);
+        getcode = await FlutterBarcodeScanner.scanBarcode("#990000", "Cancel", true, ScanMode.QR);
     setState(() {
-      // code = getcode;
+      code = getcode;
     });
   }
 
@@ -67,7 +66,7 @@ class _scanState extends State<scan> {
               ),
             ),
           ),
-          
+          Text(code)
         ],
       ),
     );
