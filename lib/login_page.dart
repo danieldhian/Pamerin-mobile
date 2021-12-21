@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pamerin/register_page.dart';
 import 'package:pamerin/beranda.dart';
+import 'package:pamerin/services/api_response.dart';
+import 'package:pamerin/services/auth_services.dart';
 
 final _formkey = GlobalKey<FormState>();
 
@@ -15,6 +17,11 @@ class Loginpage extends StatefulWidget {
 class _LoginpageState extends State<Loginpage> {
   final passwordController = TextEditingController();
   bool showPassword = false;
+  String email = "";
+  String password = "";
+  bool isLoading = true;
+
+  var Fluttertoast;
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +79,12 @@ class _LoginpageState extends State<Loginpage> {
                               return 'kolom username wajib di isi';
                             }
                             return null;
-                          }
+                          },
+                      onChanged: (value){
+                        setState(() {
+                          email = value;
+                        });
+                      },
                 ),
                 SizedBox(
                   height: 20.0,
@@ -100,16 +112,23 @@ class _LoginpageState extends State<Loginpage> {
                       labelText: "Kata sandi",
                       labelStyle: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.grey),
-                      focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black))),
-                          validator : (value){
-                            if (value == null || value.isEmpty){
-                              return 'Kolom kata sandi wajib di isi';
-                            } else if (value.length < 6){
-                              return 'Panjang kata sandi minimal 6 karakter';
-                            }
-                            return null;
-                          }
+                          focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black)
+                          )
+                      ),
+                      validator : (value){
+                        if (value == null || value.isEmpty){
+                          return 'Kolom kata sandi wajib di isi';
+                        } else if (value.length < 6){
+                          return 'Panjang kata sandi minimal 6 karakter';
+                        }
+                        return null;
+                      },
+                      onChanged: (value){
+                        setState(() {
+                          password = value;
+                        });
+                      },
                 ),
                 SizedBox(height: 40.0),
                 Container(
@@ -120,10 +139,24 @@ class _LoginpageState extends State<Loginpage> {
                     elevation: 7.0,
                     child: InkWell(
                       onTap: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) {
-                          return beranda();
-                        }));
+                        if(email != "" && password != ""){
+                          showLoaderDialog(context);
+                          logIn(email, password).then(
+                            (value){
+                              if(value == true){
+                                Navigator.pop(context);
+                                Navigator.pushReplacement(context,
+                                    MaterialPageRoute(builder: (context) {
+                                  return beranda();
+                                }));
+                                Fluttertoast.showToast(msg: "Berhasil login");
+                              }else{
+                                Navigator.pop(context);
+                                Fluttertoast.showToast(msg: "Email atau password salah.");
+                              }
+                            }
+                          );
+                        }
                       },
                       child: Center(
                         child: Text("Masuk",
@@ -147,10 +180,11 @@ class _LoginpageState extends State<Loginpage> {
                     ),
                     InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return RegisterPage();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return RegisterPage();
                         }));
+                        
                       },
                       child: Text(
                         "Daftar",
@@ -167,6 +201,30 @@ class _LoginpageState extends State<Loginpage> {
           )
         ],
       ),
+    );
+  }
+
+  Future<bool> logIn(email,password) async{
+    ApiResponse response = await AuthServices.signIn(email, password);
+    if(response.status == true){
+      return true;
+    }
+    return false;
+  }
+
+  showLoaderDialog(BuildContext context){
+    AlertDialog alert=AlertDialog(
+      content: new Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(margin: EdgeInsets.only(left: 7),child:Text("Proses..." )),
+        ],),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
     );
   }
 }
