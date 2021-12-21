@@ -7,7 +7,7 @@ import 'package:pamerin/model/pameran.dart';
 class httppameran {
   
   Future <List<Pameran>> pameranapi() async{
-    Uri url = Uri.parse("http://10.0.2.2:8000/api/exhibitions");
+    Uri url = Uri.parse("http://www.pamerin.xyz/public/api/exhibitions");
     
     var hasilpameran = await http.get(url);
 

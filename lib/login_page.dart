@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:pamerin/register_page.dart';
 import 'package:pamerin/beranda.dart';
 
+final _formkey = GlobalKey<FormState>();
+
 class Loginpage extends StatefulWidget {
   const Loginpage({Key? key}) : super(key: key);
 
@@ -55,18 +57,27 @@ class _LoginpageState extends State<Loginpage> {
             padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
             child: Column(
               children: <Widget>[
-                TextField(
+                TextFormField(
                   decoration: InputDecoration(
                       labelText: "Username",
+                      hintText: "Mauskkan email anda",
                       labelStyle: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black))),
+                          borderSide: BorderSide(color: Colors.black)
+                          )
+                          ),
+                          validator : (value) {
+                            if (value == null || value.isEmpty){
+                              return 'kolom username wajib di isi';
+                            }
+                            return null;
+                          }
                 ),
                 SizedBox(
                   height: 20.0,
                 ),
-                TextField(
+                TextFormField(
                   controller: passwordController,
                   obscureText: showPassword,
                   decoration: InputDecoration(
@@ -81,8 +92,7 @@ class _LoginpageState extends State<Loginpage> {
                             });
                           } else {
                             setState(() {
-                              showPassword =
-                              true;
+                              showPassword = true;
                             });
                           }
                         },
@@ -92,6 +102,14 @@ class _LoginpageState extends State<Loginpage> {
                           fontWeight: FontWeight.bold, color: Colors.grey),
                       focusedBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: Colors.black))),
+                          validator : (value){
+                            if (value == null || value.isEmpty){
+                              return 'Kolom kata sandi wajib di isi';
+                            } else if (value.length < 6){
+                              return 'Panjang kata sandi minimal 6 karakter';
+                            }
+                            return null;
+                          }
                 ),
                 SizedBox(height: 40.0),
                 Container(
@@ -99,7 +117,7 @@ class _LoginpageState extends State<Loginpage> {
                   child: Material(
                     borderRadius: BorderRadius.circular(20.0),
                     color: Colors.amber[600],
-                    elevation: 7.0, 
+                    elevation: 7.0,
                     child: InkWell(
                       onTap: () {
                         Navigator.pushReplacement(context,

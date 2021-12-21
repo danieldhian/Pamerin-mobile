@@ -11,7 +11,7 @@ class httpartikel {
   // httpartikel ({this.id,this.title,this.text,this.thumbnail});
 
   Future<List<Artikel>> connectAPI() async {
-    Uri url = Uri.parse("http://10.0.2.2:8000/api/article");
+    Uri url = Uri.parse("http://www.pamerin.xyz/public/api/article");
 
     var hasilartikel = await http.get(url);
 

@@ -9,14 +9,6 @@ import 'package:pamerin/model/http_artikel.dart';
 class artikel extends StatelessWidget {
   const artikel({Key? key}) : super(key: key);
 
-  // final String url = 'http://127.0.0.1:8000/api/article';
-
-  // Future getArtikel() async {
-  //   var response = await http.get(Uri.parse(url));
-  //   print(jsonDecode(response.body));
-  //   return jsonDecode(response.body);
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,17 +16,6 @@ class artikel extends StatelessWidget {
           backgroundColor: Colors.amber,
           title: Center(child: Text("Artikel")),
         ),
-        // body:
-        // FutureBuilder(
-        //   future: getArtikel(),
-        //   builder: (context, articles) {
-        //     if(articles.hasData){
-        //       return Text("data OKE");
-        //     }else{
-        //       return Text(" data Eror");
-        //     }
-        //   },
-        //   ),
         body: ListView(
           children: <Widget>[
             FutureBuilder<List<Artikel>>(
