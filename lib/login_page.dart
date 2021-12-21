@@ -8,7 +8,7 @@ import 'package:pamerin/beranda.dart';
 import 'package:pamerin/services/api_response.dart';
 import 'package:pamerin/services/auth_services.dart';
 
-final _formkey = GlobalKey<FormState>();
+// final _formkey = GlobalKey<FormState>();
 
 class Loginpage extends StatefulWidget {
   const Loginpage({Key? key}) : super(key: key);
@@ -146,15 +146,18 @@ class _LoginpageState extends State<Loginpage> {
                             (value){
                               if(value == true){
                                 // Navigator.pop(context);
-                                Navigator.of(context,rootNavigator: true).pop();
+                                Navigator.of(context, rootNavigator: true).pop();
                                 Navigator.pushReplacement(context,
                                     MaterialPageRoute(builder: (context) {
                                   return beranda();
                                 }));
-                                Fluttertoast.showToast(msg: "Berhasil login");
+                                Fluttertoast.showToast(msg: "Berhasil Login");
+
                               }else{
                                 // Navigator.pop(context);
-                                Navigator.of(context,rootNavigator: true).pop();;
+                                // Navigator.of(context).pop();
+                                // Navigator.pop(context)
+                                Navigator.of(context, rootNavigator: true).pop();;
                                 Fluttertoast.showToast(msg: "Email atau password salah.");
                               }
                             }
